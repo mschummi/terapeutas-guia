@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Gratuito | TurboTráfego × Terapeutas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul:      #1A3C5E;
+    --azul-mid:  #1e4a75;
+    --ouro:      #C8960C;
+    --ouro-claro:#E8B020;
+    --fundo:     #F7F8FA;
+    --branco:    #FFFFFF;
+    --cinza:     #8A9BB0;
+    --texto:     #1A2B3C;
+    --borda:     #E2E8F0;
+    --sombra:    0 4px 32px rgba(26,60,94,.10);
+    --sombra-hover: 0 12px 48px rgba(26,60,94,.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--fundo);
+    color: var(--texto);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--azul);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 24px 72px;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,150,12,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,150,12,.15);
+    border: 1px solid rgba(200,150,12,.35);
+    color: var(--ouro-claro);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 99px;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--ouro);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:.5; transform:scale(1.4); }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(26px, 5vw, 46px);
+    font-weight: 800;
+    color: var(--branco);
+    line-height: 1.15;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--ouro-claro);
+  }
+
+  .hero p {
+    font-size: clamp(15px, 2vw, 18px);
+    color: rgba(255,255,255,.72);
+    max-width: 540px;
+    margin: 0 auto 0;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .section { padding: 64px 24px; }
+  .container { max-width: 780px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ouro);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 800;
+    color: var(--azul);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--ouro);
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: #5a7080;
+    line-height: 1.65;
+    margin-bottom: 40px;
+  }
+
+  /* lista de itens do guia */
+  .items-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+
+  .item-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: var(--sombra);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+  }
+
+  .item-icon {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--azul);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .item-text strong {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 4px;
+  }
+  .item-text span {
+    font-size: 13.5px;
+    color: #5a7080;
+    line-height: 1.55;
+  }
+
+  /* ── SEPARADOR ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--borda), transparent);
+    margin: 0 24px;
+  }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    background: var(--azul);
+    padding: 64px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,150,12,.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .form-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 800;
+    color: var(--branco);
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .form-title em { font-style: normal; color: var(--ouro-claro); }
+
+  .form-sub {
+    text-align: center;
+    font-size: 15px;
+    color: rgba(255,255,255,.62);
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-card {
+    background: var(--branco);
+    border-radius: 20px;
+    padding: 40px 36px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,.25);
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-card label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 7px;
+  }
+
+  .form-card input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--borda);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--texto);
+    background: #F9FAFB;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    margin-bottom: 20px;
+    -webkit-appearance: none;
+  }
+  .form-card input:focus {
+    border-color: var(--azul-mid);
+    box-shadow: 0 0 0 3px rgba(26,60,94,.10);
+    background: var(--branco);
+  }
+  .form-card input::placeholder { color: #b0bcc8; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--ouro);
+    color: var(--branco);
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(200,150,12,.35);
+    position: relative;
+  }
+  .btn-submit:hover {
+    background: var(--ouro-claro);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(200,150,12,.45);
+  }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit.loading { pointer-events: none; opacity: .7; }
+
+  .spinner {
+    display: none;
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    margin: 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .form-legal {
+    text-align: center;
+    font-size: 12px;
+    color: #a0b0c0;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  /* ── SUCESSO ── */
+  .success-card {
+    display: none;
+    background: var(--branco);
+    border-radius: 20px;
+    padding: 48px 36px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,.25);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .success-icon {
+    width: 64px; height: 64px;
+    background: #E8F5E9;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+  }
+
+  .success-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--azul);
+    margin-bottom: 10px;
+  }
+
+  .success-sub {
+    font-size: 15px;
+    color: #5a7080;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: var(--azul);
+    color: var(--branco);
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    box-shadow: 0 4px 20px rgba(26,60,94,.25);
+  }
+  .btn-download:hover {
+    background: var(--azul-mid);
+    transform: translateY(-1px);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--azul);
+    padding: 32px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,.4);
+    line-height: 1.6;
+  }
+  .footer a { color: var(--ouro-claro); text-decoration: none; }
+
+  /* ── ESTATÍSTICAS ── */
+  .stats-bar {
+    background: var(--branco);
+    border-bottom: 1px solid var(--borda);
+    padding: 24px;
+  }
+  .stats-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--azul);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-top: 4px;
+  }
+
+  /* Animações de entrada */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 520px) {
+    .form-card { padding: 28px 20px; }
+    .stats-inner { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Documento Exclusivo · Terapeutas</div>
+  <h1>O teu consultório está cheio<br>de potencial. <em>Falta o sistema.</em></h1>
+  <p>Descarrega o guia completo de mercado para terapeutas online em Portugal e descobre onde estão as oportunidades que ninguém está a explorar.</p>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">1,3M</div>
+      <div class="stat-label">Portugueses sem apoio</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50%</div>
+      <div class="stat-label">Precisam e não procuram</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Lacunas identificadas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Concorrentes no interior</div>
+    </div>
+  </div>
+</div>
+
+<!-- O QUE TENS -->
+<section class="section">
+  <div class="container">
+    <p class="section-label fade-up">O que está incluído</p>
+    <h2 class="section-title fade-up">Análise completa do mercado.<br><em>Sem filtros.</em></h2>
+    <p class="section-sub fade-up">Este documento foi preparado com base em dados reais de 2025/2026 e cobre tudo o que precisas de saber para posicionares o teu consultório online de forma diferenciada.</p>
+
+    <div class="items-grid">
+      <div class="item-card fade-up">
+        <div class="item-icon">🎯</div>
+        <div class="item-text">
+          <strong>Mapa completo de dores por segmento</strong>
+          <span>Faixa etária, estrato social, localização geográfica e estado civil. A linguagem certa para cada pessoa.</span>
+        </div>
+      </div>
+      <div class="item-card fade-up">
+        <div class="item-icon">👤</div>
+        <div class="item-text">
+          <strong>Público-alvo e ICP detalhados</strong>
+          <span>Quem é o teu cliente ideal, o que o motiva, o que o trava e como chegares até ele com precisão.</span>
+        </div>
+      </div>
+      <div class="item-card fade-up">
+        <div class="item-icon">🔍</div>
+        <div class="item-text">
+          <strong>O que o mercado oferece e onde falha</strong>
+          <span>Análise dos 3 modelos dominantes, o que está em falta e porque é que a maioria dos terapeutas não converte online.</span>
+        </div>
+      </div>
+      <div class="item-card fade-up">
+        <div class="item-icon">💡</div>
+        <div class="item-text">
+          <strong>7 oportunidades reais no digital</strong>
+          <span>Nicho, emigrantes, homens, interior do país, B2B, automação e vídeo. Com como explorar cada uma.</span>
+        </div>
+      </div>
+      <div class="item-card fade-up">
+        <div class="item-icon">🚀</div>
+        <div class="item-text">
+          <strong>Diferenciais inexplorados que ninguém usa ainda</strong>
+          <span>Agente de IA, acompanhamento entre sessões, comunidade como pré-venda, podcast de nicho e mais.</span>
+        </div>
+      </div>
+      <div class="item-card fade-up">
+        <div class="item-icon">📚</div>
+        <div class="item-text">
+          <strong>Referências científicas e livros recomendados</strong>
+          <span>Para enriquecer o teu conteúdo, as tuas aulas e a tua autoridade online com bases sólidas.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="container">
+    <h2 class="form-title fade-up">Descarrega o guia <em>gratuitamente.</em></h2>
+    <p class="form-sub fade-up">Deixa os teus dados e recebe acesso imediato ao documento completo em PDF.</p>
+
+    <!-- FORMULÁRIO -->
+    <div class="form-card fade-up" id="formCard">
+      <form id="leadForm" novalidate>
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" placeholder="O teu nome" autocomplete="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="email@exemplo.pt" autocomplete="email" required>
+
+        <label for="whatsapp">WhatsApp (com indicativo)</label>
+        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+351 9XX XXX XXX" autocomplete="tel" required>
+
+        <button type="submit" class="btn-submit" id="btnSubmit">
+          <span id="btnText">📄 Descarregar Guia Gratuito</span>
+          <div class="spinner" id="spinner"></div>
+        </button>
+        <p class="form-legal">Sem spam. Os teus dados são usados apenas para envio do documento<br>e atualizações relevantes sobre marketing para terapeutas.</p>
+      </form>
+    </div>
+
+    <!-- SUCESSO -->
+    <div class="success-card" id="successCard">
+      <div class="success-icon">✅</div>
+      <h3 class="success-title">Registo confirmado!</h3>
+      <p class="success-sub">O teu acesso ao guia está pronto. Clica no botão abaixo para descarregar o documento completo.</p>
+      <a href="https://drive.google.com/uc?export=download&id=1I8PYiD-r6jTrSuLD1rbv0ManCh4XCOoWXBQZwIO1JMI" class="btn-download" id="downloadBtn" target="_blank" download>
+        📥 Descarregar Guia Agora
+      </a>
+      <p style="font-size:13px;color:#a0b0c0;margin-top:16px;">Vais também receber o link por email.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>
+    <strong style="color:rgba(255,255,255,.7);">TurboTráfego</strong> · Tráfego pago, IA e automações para clínicas e terapeutas<br>
+    <a href="https://www.turbotrafego.pt" target="_blank">turbotrafego.pt</a> · <a href="https://instagram.com/turbotrafego_gt" target="_blank">@turbotrafego_gt</a>
+  </p>
+  <p style="margin-top:10px;">© 2026 TurboTráfego. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+// =============================================
+// CONFIGURAÇÃO — EDITA APENAS ESTAS LINHAS
+// =============================================
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzUbNjxCgzmlRezlK_tw6OKaX0iT66GeOLmysMELTp1gGgNaZqxqfSp8U20wVzPZfqu/exec";
+const LINK_DOCUMENTO  = "https://drive.google.com/uc?export=download&id=1I8PYiD-r6jTrSuLD1rbv0ManCh4XCOoWXBQZwIO1JMI";  // link direto para o PDF/DOCX
+// =============================================
+
+// Animações de entrada
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Submissão do formulário
+document.getElementById('leadForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const nome     = document.getElementById('nome').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const whatsapp = document.getElementById('whatsapp').value.trim();
+
+  // Validação básica
+  if (!nome || !email || !whatsapp) {
+    highlight('Por favor preenche todos os campos.');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    highlight('Email inválido.');
+    return;
+  }
+
+  // Loading state
+  const btn    = document.getElementById('btnSubmit');
+  const txt    = document.getElementById('btnText');
+  const spin   = document.getElementById('spinner');
+  btn.classList.add('loading');
+  txt.style.display = 'none';
+  spin.style.display = 'block';
+
+  // Data e hora PT
+  const agora = new Date().toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' });
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, email, whatsapp, data: agora, fonte: 'Palestra Terapeutas 2026' })
+    });
+  } catch (_) {
+    // no-cors não devolve resposta — erro de rede seria apanhado aqui
+  }
+
+  // Atualizar link de download
+  document.getElementById('downloadBtn').setAttribute('href', LINK_DOCUMENTO);
+
+  // Mostrar sucesso
+  document.getElementById('formCard').style.display = 'none';
+  const sc = document.getElementById('successCard');
+  sc.style.display = 'block';
+  sc.style.opacity = '0';
+  sc.style.transform = 'translateY(20px)';
+  requestAnimationFrame(() => {
+    sc.style.transition = 'opacity .5s ease, transform .5s ease';
+    sc.style.opacity = '1';
+    sc.style.transform = 'translateY(0)';
+  });
+});
+
+function highlight(msg) {
+  const input = document.querySelector('input:invalid') || document.getElementById('nome');
+  input.style.borderColor = '#E53E3E';
+  input.style.boxShadow = '0 0 0 3px rgba(229,62,62,.15)';
+  setTimeout(() => { input.style.borderColor = ''; input.style.boxShadow = ''; }, 2000);
+}
+</script>
+</body>
+</html>
